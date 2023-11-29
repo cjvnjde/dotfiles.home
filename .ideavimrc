@@ -8,6 +8,7 @@ set scrolloff=5
 noremap <C-u> <C-u>zz
 noremap <C-d> <C-d>zz
 noremap <leader>p \"_dP
+vmap y ygv<Esc>
 
 set relativenumber
 set number
