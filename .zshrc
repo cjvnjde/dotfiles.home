@@ -4,6 +4,8 @@ ZSH_THEME="bira"
 
 plugins=(git autojump asdf npm docker tmux fzf)
 
+alias vim="nvim"
+
 source $ZSH/oh-my-zsh.sh
 
 if [ -f "$HOME/.zshrc_local" ]; then
