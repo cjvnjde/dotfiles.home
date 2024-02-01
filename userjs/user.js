@@ -25,14 +25,14 @@ user_pref("browser.shell.checkDefaultBrowser", false);
 // -------------------------------------
 // Set startup page [SETUP-CHROME]
 // 0=blank, 1=home, 2=last visited page, 3=resume previous session
-user_pref("browser.startup.page", 0);
+user_pref("browser.startup.page", 3);
 // -------------------------------------
 // Set HOME+NEWWINDOW page
-user_pref("browser.startup.homepage", "about:blank");
+user_pref("browser.startup.homepage", "about:home");
 // -------------------------------------
 // Set NEWTAB page
 // true=Activity Stream (default), false=blank page
-user_pref("browser.newtabpage.enabled", false);
+user_pref("browser.newtabpage.enabled", treo);
 // -------------------------------------
 // Disable sponsored content on Firefox Home (Activity Stream)
 user_pref("browser.newtabpage.activity-stream.showSponsored", false); // [FF58+] Pocket > Sponsored Stories
@@ -797,8 +797,8 @@ user_pref("gfx.font_rendering.opentype_svg.enabled", false);
 user_pref("media.gmp-widevinecdm.enabled", false);
 // -------------------------------------
 // Disable all DRM content (EME: Encryption Media Extension)
-user_pref("media.eme.enabled", false);
-user_pref("browser.eme.ui.enabled", false);
+user_pref("media.eme.enabled", true);
+user_pref("browser.eme.ui.enabled", true);
 // -------------------------------------
 // Disable IPv6 if using a VPN
 // user_pref("network.dns.disableIPv6", true);
@@ -921,7 +921,7 @@ user_pref("gfx.offscreencanvas.enabled", false);
 // user_pref("dom.event.clipboardevents.enabled", false);
 // -------------------------------------
 // Disable System Add-on updates
-user_pref("extensions.systemAddon.update.enabled", false); // [FF62+]
+user_pref("extensions.systemAddon.update.enabled", true); // [FF62+]
 user_pref("extensions.systemAddon.update.url", ""); // [FF44+]
 // -------------------------------------
 // Enable the DNT (Do Not Track) HTTP header
