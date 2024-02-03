@@ -592,7 +592,7 @@ user_pref("browser.contentblocking.category", "strict"); // [HIDDEN PREF]
 // >>>>>>>>>>>>>>>>>>>>>
 //
 // Enable Firefox to clear items on shutdown
-user_pref("privacy.sanitize.sanitizeOnShutdown", true);
+user_pref("privacy.sanitize.sanitizeOnShutdown", false);
 //
 // SANITIZE ON SHUTDOWN: IGNORES "ALLOW" SITE EXCEPTIONS
 //
@@ -652,7 +652,7 @@ user_pref("privacy.window.maxInnerHeight", 900);
 user_pref("privacy.resistFingerprinting.block_mozAddonManager", true);
 // -------------------------------------
 // Enable RFP letterboxing [FF67+]
-user_pref("privacy.resistFingerprinting.letterboxing", true); // [HIDDEN PREF]
+user_pref("privacy.resistFingerprinting.letterboxing", false); // [HIDDEN PREF]
 // user_pref("privacy.resistFingerprinting.letterboxing.dimensions", ""); // [HIDDEN PREF]
 // -------------------------------------
 // Experimental RFP [FF91+]
@@ -696,7 +696,7 @@ user_pref("webgl.disabled", false);
 // user_pref("security.nocertdb", true); //
 // -------------------------------------
 // Disable favicons in history and bookmarks
-user_pref("browser.chrome.site_icons", false);
+user_pref("browser.chrome.site_icons", true);
 // -------------------------------------
 // Exclude "Undo Closed Tabs" in Session Restore
 // user_pref("browser.sessionstore.max_tabs_undo", 0);
