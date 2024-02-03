@@ -1034,12 +1034,12 @@ user_pref("layout.spellcheckDefault", 0); // 0=none, 1-multi-line, 2=multi-line 
 user_pref("browser.newtabpage.activity-stream.feeds.section.topstories", false); // Recommended by Pocket
 user_pref("browser.newtabpage.activity-stream.section.highlights.includePocket", false);
 user_pref("browser.newtabpage.activity-stream.feeds.topsites", true);
-user_pref("browser.newtabpage.activity-stream.topSitesRow", 6);
+user_pref("browser.newtabpage.activity-stream.topSitesRows", 6);
 user_pref("browser.newtabpage.activity-stream.showSearch", false);
-user_pref("browser.newtabpage.activity-stream.section.highlights", false);
 user_pref("browser.newtabpage.activity-stream.section.highlights.includeBookmarks", false);
 user_pref("browser.newtabpage.activity-stream.section.highlights.includeDownloads", false);
 user_pref("browser.newtabpage.activity-stream.section.highlights.includeVisited", false);
+user_pref("browser.newtabpage.activity-stream.feeds.section.highlights", false);
 //
 // UX FEATURES
 //
