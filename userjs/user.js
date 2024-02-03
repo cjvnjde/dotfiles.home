@@ -1,6 +1,7 @@
 // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 // START: internal custom pref to test for syntax error
 // >>>>>>>>>>>>>>>>>>>>>
+user_pref("browser.toolbar.bookmarks.visibility", "newtab");
 //
 // Disable about:config warning
 user_pref("browser.aboutConfig.showWarning", false);
@@ -651,7 +652,7 @@ user_pref("privacy.window.maxInnerHeight", 900);
 user_pref("privacy.resistFingerprinting.block_mozAddonManager", true);
 // -------------------------------------
 // Enable RFP letterboxing [FF67+]
-user_pref("privacy.resistFingerprinting.letterboxing", false); // [HIDDEN PREF]
+user_pref("privacy.resistFingerprinting.letterboxing", true); // [HIDDEN PREF]
 // user_pref("privacy.resistFingerprinting.letterboxing.dimensions", ""); // [HIDDEN PREF]
 // -------------------------------------
 // Experimental RFP [FF91+]
