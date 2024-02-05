@@ -611,7 +611,7 @@ user_pref("privacy.clearOnShutdown.sessions", false); // [DEFAULT: true]
 //
 // Set "Cookies" and "Site Data" to clear on shutdown
 user_pref("privacy.clearOnShutdown.cookies", false); // Cookies
-user_pref("privacy.clearOnShutdown.offlineApps", falso); // Site Data
+user_pref("privacy.clearOnShutdown.offlineApps", false); // Site Data
 //
 // SANITIZE MANUAL: IGNORES "ALLOW" SITE EXCEPTIONS
 //
@@ -721,7 +721,7 @@ user_pref("browser.urlbar.suggest.weather", false);
 user_pref("browser.urlbar.autoFill", false);
 // -------------------------------------
 // Disable browsing and download history
-user_pref("places.history.enabled", false);
+user_pref("places.history.enabled", true);
 // -------------------------------------
 // Disable Windows jumplist [WINDOWS]
 // user_pref("browser.taskbar.lists.enabled", false);
