@@ -16,3 +16,4 @@ if [ -f "$HOME/.zshrc_local" ]; then
     source "$HOME/.zshrc_local"
 fi
 
+. ~/.asdf/plugins/java/set-java-home.zsh
