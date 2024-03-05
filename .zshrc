@@ -2,6 +2,7 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export ZSH="$HOME/.oh-my-zsh"
 
 path+=("$HOME/.local/scripts")
+path+=("$HOME/.cargo/bin")
 
 ZSH_THEME="bira"
 
@@ -16,4 +17,3 @@ if [ -f "$HOME/.zshrc_local" ]; then
     source "$HOME/.zshrc_local"
 fi
 
-. ~/.asdf/plugins/java/set-java-home.zsh
