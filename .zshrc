@@ -9,6 +9,7 @@ ZSH_THEME="bira"
 plugins=(git autojump asdf npm docker tmux fzf node-bin)
 
 alias vim="nvim"
+alias ls="exa --tree --level=1 --icons=always"
 bindkey -s ^f "tmux-sessionizer\n"
 
 source $ZSH/oh-my-zsh.sh
