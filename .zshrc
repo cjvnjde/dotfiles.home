@@ -11,7 +11,6 @@ ZSH_THEME="bira"
 
 plugins=(git autojump asdf npm docker tmux fzf node-bin)
 
-alias vim="nvim"
 bindkey -s ^f "tmux-sessionizer\n"
 
 source $ZSH/oh-my-zsh.sh
@@ -20,4 +19,5 @@ if [ -f "$HOME/.zshrc_local" ]; then
     source "$HOME/.zshrc_local"
 fi
 
-alias ls="exa --tree --level=1 --icons=always"
+alias vim="nvim"
+alias ls="eza --tree --level=1 --icons=always"
