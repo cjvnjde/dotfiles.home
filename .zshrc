@@ -29,5 +29,7 @@ fi
 
 alias vim="nvim"
 alias ls="eza --tree --level=1 --icons=always"
+alias cd="z"
+alias ci="zi"
 
 eval "$(zoxide init zsh)"
