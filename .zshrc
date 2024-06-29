@@ -19,7 +19,7 @@ path+=("$HOME/.cargo/bin")
 
 ZSH_THEME="bira"
 
-plugins=(git autojump asdf npm docker tmux fzf node-bin)
+plugins=(git asdf npm docker fzf node-bin)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -30,3 +30,4 @@ fi
 alias vim="nvim"
 alias ls="eza --tree --level=1 --icons=always"
 
+eval "$(zoxide init zsh)"
