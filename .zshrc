@@ -27,7 +27,7 @@ alias vim="nvim"
 alias ls="eza --tree --level=1 --icons=always"
 alias cd="z"
 alias ci="zi"
-alias cat="bat -p"
+alias cat="bat -p --theme='TwoDark'"
 
 if [ -f "$HOME/.zshrc_local" ]; then
     source "$HOME/.zshrc_local"
