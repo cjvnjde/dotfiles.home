@@ -3,6 +3,7 @@ export ZSH="$HOME/.oh-my-zsh"
 
 export EDITOR='nvim'
 export VISUAL='nvim'
+export BAT_THEME="Catppuccin Mocha"
 
 # FZF theme 
 export FZF_DEFAULT_OPTS='
@@ -27,7 +28,7 @@ alias vim="nvim"
 alias ls="eza --tree --level=1 --icons=always"
 alias cd="z"
 alias ci="zi"
-alias cat="bat -p --theme='TwoDark'"
+alias cat="bat -p --theme='Catppuccin Mocha'"
 
 if [ -f "$HOME/.zshrc_local" ]; then
     source "$HOME/.zshrc_local"
