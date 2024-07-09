@@ -34,4 +34,4 @@ if [ -f "$HOME/.zshrc_local" ]; then
 fi
 
 eval "$(atuin init zsh)"
-
+eval "$(thefuck --alias)"
