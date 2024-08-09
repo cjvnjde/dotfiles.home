@@ -20,7 +20,7 @@ path+=("$HOME/.cargo/bin")
 
 ZSH_THEME="bira"
 
-plugins=(git asdf docker fzf node-bin bun git node rust)
+plugins=(git asdf docker fzf bun git node rust)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -35,6 +35,6 @@ if [ -f "$HOME/.zshrc_local" ]; then
 fi
 
 eval "$(atuin init zsh)"
-eval "$(thefuck --alias)"
+# eval "$(thefuck --alias)"
 eval "$(zoxide init zsh)"
 
