@@ -1,34 +1,25 @@
-nnoremap <C-a> ggVG
-
-nnoremap <Space> <Nop>
 let mapleader=" "
+nnoremap <Space> <Nop>
 
+" Basic Settings
 set scrolloff=5
-
-noremap <C-u> <C-u>zz
-noremap <C-d> <C-d>zz
-noremap <leader>p \"_dP
-vmap y ygv<Esc>
-
 set relativenumber
 set number
-set ideamarks
-set ideajoin
 set clipboard+=unnamedplus
-
 set incsearch
 set hlsearch
-
+set cursorline
+set showmatch
+set colorcolumn=80
 set breakindent
 set autoindent
 set smartindent
-
 set expandtab
 set smarttab
+set ideamarks
+set ideajoin
 
-map Q gq
-map <leader>tt <Action>(osmedile.intellij.stringmanip.WordsAndCamelToConstantStyleCaseAction)
-
+" Plugin Management
 Plug 'machakann/vim-highlightedyank'
 Plug 'preservim/nerdtree'
 Plug 'easymotion/vim-easymotion'
@@ -36,7 +27,17 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'terryma/vim-multiple-cursors'
 
-" Remap multiple-cursors shortcuts to match terryma/vim-multiple-cursors
+" Remappings for efficiency
+nnoremap <C-a> ggVG
+noremap <C-u> <C-u>zz
+noremap <C-d> <C-d>zz
+noremap <leader>p \"_dP
+vmap <leader>p \"_dP
+vmap y ygv<Esc>
+map Q gq
+map <leader>tt <Action>(osmedile.intellij.stringmanip.WordsAndCamelToConstantStyleCaseAction)
+
+" Multiple Cursors Configuration
 nmap <C-n> <Plug>NextWholeOccurrence
 xmap <C-n> <Plug>NextWholeOccurrence
 nmap g<C-n> <Plug>NextOccurrence
@@ -51,3 +52,11 @@ nmap <leader><C-n> <Plug>AllWholeOccurrences
 xmap <leader><C-n> <Plug>AllWholeOccurrences
 nmap <leader>g<C-n> <Plug>AllOccurrences
 xmap <leader>g<C-n> <Plug>AllOccurrences
+
+" Swap ; and : in Normal mode
+nnoremap ; :
+nnoremap : ;
+
+" Swap ; and : in Visual mode
+vnoremap ; :
+vnoremap : ;
