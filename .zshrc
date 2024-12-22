@@ -1,8 +1,6 @@
 export XDG_CONFIG_HOME="$HOME/.config"
 export ZSH="$HOME/.oh-my-zsh"
 
-export EDITOR='nvim'
-export VISUAL='nvim'
 export BAT_THEME="Catppuccin Mocha"
 
 # FZF theme 
@@ -20,21 +18,45 @@ path+=("$HOME/.cargo/bin")
 
 ZSH_THEME="bira"
 
-plugins=(git asdf docker fzf bun git node rust)
+plugins=(git asdf docker fzf bun node rust python)
 
 source $ZSH/oh-my-zsh.sh
 
-alias vim="nvim"
-alias ls="eza --tree --level=1 --icons=always"
-alias cd="z"
-alias ci="zi"
-alias cat="bat -p --theme='Catppuccin Mocha'"
+if command -v nvim >/dev/null 2>&1; then
+  alias vim="nvim"
+
+  export EDITOR='nvim'
+  export VISUAL='nvim'
+else
+  export EDITOR='vim'
+  export VISUAL='vim'
+fi
+
+if command -v eza >/dev/null 2>&1; then
+  alias ls="eza --tree --level=1 --icons=always"
+else
+  alias ls="ls -G" 
+fi
+
+if command -v bat >/dev/null 2>&1; then
+  alias cat="bat -p --theme='Catppuccin Mocha'"
+fi
+
+if command -v zoxide >/dev/null 2>&1; then
+  eval "$(zoxide init zsh)"
+  alias cd="z"
+  alias ci="zi" 
+fi
+
+if command -v thefuck >/dev/null 2>&1; then
+  eval "$(thefuck --alias)"
+fi
+
+if command -v atuin >/dev/null 2>&1; then
+  eval "$(atuin init zsh)"
+fi
 
 if [ -f "$HOME/.zshrc_local" ]; then
     source "$HOME/.zshrc_local"
 fi
-
-eval "$(atuin init zsh)"
-eval "$(thefuck --alias)"
-eval "$(zoxide init zsh)"
 
