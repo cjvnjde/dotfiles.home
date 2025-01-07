@@ -22,6 +22,10 @@ plugins=(git asdf docker fzf bun node rust python)
 
 source $ZSH/oh-my-zsh.sh
 
+if [ -f "$HOME/.zshrc_local" ]; then
+    source "$HOME/.zshrc_local"
+fi
+
 if command -v nvim >/dev/null 2>&1; then
   alias vim="nvim"
 
@@ -54,9 +58,5 @@ fi
 
 if command -v atuin >/dev/null 2>&1; then
   eval "$(atuin init zsh)"
-fi
-
-if [ -f "$HOME/.zshrc_local" ]; then
-    source "$HOME/.zshrc_local"
 fi
 
