@@ -18,6 +18,7 @@ set expandtab
 set smarttab
 set ideamarks
 set ideajoin
+set easymotion
 
 " Plugin Management
 Plug 'machakann/vim-highlightedyank'
@@ -35,7 +36,6 @@ noremap <leader>p \"_dP
 vmap <leader>p \"_dP
 vmap y ygv<Esc>
 map Q gq
-map <leader>tt <Action>(osmedile.intellij.stringmanip.WordsAndCamelToConstantStyleCaseAction)
 
 " Multiple Cursors Configuration
 nmap <C-n> <Plug>NextWholeOccurrence
