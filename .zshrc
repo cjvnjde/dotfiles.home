@@ -18,7 +18,7 @@ path+=("$HOME/.cargo/bin")
 
 ZSH_THEME="bira"
 
-plugins=(git docker fzf bun node rust python)
+plugins=(git docker bun node rust python)
 
 source $ZSH/oh-my-zsh.sh
 
