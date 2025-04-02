@@ -55,7 +55,15 @@
 
 [init]
   defaultBranch = main
+
 [pull]
-	rebase = true
+  rebase = true
+
 [rerere]
-	enabled = true
+  enabled = true
+
+[alias]
+  lol = log --oneline --decorate 
+  graph = log --graph --oneline --decorate
+  fu = !git add -A && git commit -m 'I identify as a properly named commit message' && git push origin HEAD
+  
