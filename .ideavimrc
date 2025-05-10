@@ -19,13 +19,16 @@ set smarttab
 set ideamarks
 set ideajoin
 set easymotion
+set functiontextobj
+set which-key
 
 " Plugin Management
+Plug 'vim-scripts/argtextobj.vim'
+Plug 'tpope/vim-commentary'
+Plug 'easymotion/vim-easymotion'
 Plug 'machakann/vim-highlightedyank'
 Plug 'preservim/nerdtree'
-Plug 'easymotion/vim-easymotion'
 Plug 'tpope/vim-surround'
-Plug 'tpope/vim-commentary'
 Plug 'terryma/vim-multiple-cursors'
 
 " Remappings for efficiency
