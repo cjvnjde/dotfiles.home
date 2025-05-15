@@ -56,7 +56,10 @@ if command -v thefuck >/dev/null 2>&1; then
   eval "$(thefuck --alias)"
 fi
 
-if command -v atuin >/dev/null 2>&1; then
-  eval "$(atuin init zsh)"
-fi
+
+alias h='eval "$(fc -l -r -n 1 | fzf)"'
+
+# if command -v atuin >/dev/null 2>&1; then
+#   eval "$(atuin init zsh)"
+# fi
 
