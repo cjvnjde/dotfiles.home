@@ -67,3 +67,7 @@
   graph = log --graph --oneline --decorate
   fu = !git add -A && git commit -m 'I identify as a properly named commit message' && git push origin HEAD
   
+[submodule]
+	recurse = true
+[push]
+	recurseSubmodules = on-demand
