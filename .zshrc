@@ -37,7 +37,7 @@ else
 fi
 
 if command -v eza >/dev/null 2>&1; then
-  alias ls="eza --tree --level=0 --icons=always"
+  alias ls="eza --tree --level=1 --icons=always"
 else
   alias ls="ls -G" 
 fi
