@@ -3,7 +3,6 @@ export ZSH="$HOME/.oh-my-zsh"
 
 export BAT_THEME="Catppuccin Mocha"
 
-# FZF theme 
 export FZF_DEFAULT_OPTS='
 --height 40%
 --layout=reverse
@@ -18,7 +17,7 @@ path+=("$HOME/.cargo/bin")
 
 ZSH_THEME="bira"
 
-plugins=(git docker bun node rust python)
+plugins=(git docker colored-man-pages zsh-autosuggestions zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
