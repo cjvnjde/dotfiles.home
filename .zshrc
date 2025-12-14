@@ -35,12 +35,6 @@ else
   export VISUAL='vim'
 fi
 
-# if command -v eza >/dev/null 2>&1; then
-#   alias ls="eza --tree --level=1 --icons=always"
-# else
-#   alias ls="ls -G" 
-# fi
-
 if command -v bat >/dev/null 2>&1; then
   alias cat="bat -p --theme='Catppuccin Mocha'"
 fi
@@ -57,6 +51,7 @@ fi
 
 
 alias h='eval "$(fc -l -r -n 1 | fzf)"'
+alias ff="fzf --preview 'bat --style=numbers --color=always {}'"
 
 if command -v atuin >/dev/null 2>&1; then
   eval "$(atuin init zsh)"
