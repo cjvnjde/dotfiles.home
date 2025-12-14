@@ -31,8 +31,8 @@
   syntax-theme = "Catppuccin Mocha"
 
 [user]
-  name = Vitalij Nykyforenko
   email = vitalij.nykyforenko@gmail.com
+  name = Vitalij Nykyforenko
 
 [core]
   editor = nvim
@@ -72,3 +72,6 @@
 	recurse = true
 [push]
 	recurseSubmodules = on-demand
+
+[include]
+    path = ~/dotfiles/home/.gitconfig_local
