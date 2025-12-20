@@ -13,6 +13,7 @@ export FZF_DEFAULT_OPTS='
 '
 
 path+=("$HOME/.local/scripts")
+path+=("$HOME/.local/bin")
 path+=("$HOME/.cargo/bin")
 
 ZSH_THEME="bira"
