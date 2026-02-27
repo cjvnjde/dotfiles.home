@@ -18,8 +18,17 @@ path+=("$HOME/.cargo/bin")
 
 ZSH_THEME="bira"
 
+autoload -Uz compinit
+
+if [[ -n "$HOME/.zcompdump"(#qN.mh+24) ]]; then
+  compinit
+else
+  compinit -C
+fi
+
 plugins=(git docker colored-man-pages zsh-autosuggestions zsh-syntax-highlighting)
 
+DISABLE_COMPFIX="true"
 source $ZSH/oh-my-zsh.sh
 
 if [ -f "$HOME/.zshrc_local" ]; then
@@ -40,22 +49,15 @@ if command -v bat >/dev/null 2>&1; then
   alias cat="bat -p --theme='Catppuccin Mocha'"
 fi
 
-if command -v zoxide >/dev/null 2>&1; then
-  eval "$(zoxide init zsh)"
-  alias cd="z"
-  alias ci="zi" 
-fi
-
-if command -v thefuck >/dev/null 2>&1; then
-  eval "$(thefuck --alias)"
-fi
-
-
 alias h='eval "$(fc -l -r -n 1 | fzf)"'
 alias ff="fzf --preview 'bat --style=numbers --color=always {}'"
 
-if command -v atuin >/dev/null 2>&1; then
-  eval "$(atuin init zsh)"
-fi
+# Deferred init: runs after the prompt is displayed and zle is idle.
+# Requires custom OMZ plugins (see home/README.md):
+#   - zsh-syntax-highlighting
+#   - zsh-autosuggestions
+#   - zsh-defer
+source ${ZSH_CUSTOM:-$ZSH/custom}/plugins/zsh-defer/zsh-defer.plugin.zsh
 
-autoload -U compinit; compinit
+zsh-defer -c 'command -v zoxide >/dev/null 2>&1 && eval "$(zoxide init zsh)" && alias cd="z" && alias ci="zi"'
+zsh-defer -c 'command -v atuin  >/dev/null 2>&1 && eval "$(atuin init zsh)"'
