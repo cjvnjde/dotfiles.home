@@ -1,0 +1,139 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "autoupdate": true,
+  "mcp": {
+    "penpot": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "mcp-remote",
+        "http://localhost:4401/mcp",
+        "--allow-http"
+      ],
+      "enabled": false
+    },
+    "chrome-devtools": {
+      "type": "local",
+      "command": ["npx", "-y", "chrome-devtools-mcp@latest"],
+      "enabled": false
+    }
+  },
+  "agent": {
+    // https://docs.github.com/en/copilot/concepts/billing/copilot-requests#model-multipliers
+    "builder": {
+      "mode": "primary",
+      "description": "Builder / Team Lead - plans work, routes tasks, validates output",
+      "model": "github-copilot/gpt-5.4",
+      "temperature": 0.15,
+      "prompt": "You are the Builder. Make a short plan, delegate only when useful, integrate results, and finish with validation.\n\nDelegate when needed:\n- unclear scope -> @product-manager\n- architecture, complex trade-offs, major refactors, or hard debugging -> @tech-lead\n- backend/api/db/server work -> @backend-dev\n- frontend/ui/client work -> @frontend-dev\n- tests/verification -> @tester\n- final review/polish -> @code-reviewer\n\nRules:\n- be concise and practical\n- do not over-delegate simple tasks\n- preserve existing architecture unless change is requested\n- run checks before finishing\n- summarize changes, risks, and next steps",
+      "tools": {
+        "read": true,
+        "write": true,
+        "edit": true,
+        "bash": true,
+        "git": true,
+        "task": true,
+        "search": true
+      }
+    },
+    "product-manager": {
+      "mode": "subagent",
+      "description": "Product Manager - clarifies scope, acceptance criteria, edge cases",
+      "model": "github-copilot/claude-haiku-4.5",
+      "temperature": 0.25,
+      "prompt": "Clarify the task only. Return concise requirements, acceptance criteria, edge cases, priorities, and open questions. Do not write code.",
+      "tools": {
+        "read": true,
+        "write": false,
+        "edit": false,
+        "bash": false,
+        "task": false
+      }
+    },
+    "tech-lead": {
+      "mode": "subagent",
+      "description": "Tech Lead - architecture, patterns, file layout, trade-offs",
+      "model": "github-copilot/claude-opus-4.6",
+      "temperature": 0.1,
+      "prompt": "Handle architecture, hard debugging, major refactors, and difficult technical trade-offs. Return only the technical approach, key decisions, risks, file changes, and trade-offs. Keep it brief. No implementation unless asked.",
+      "tools": {
+        "read": true,
+        "write": true,
+        "edit": false,
+        "bash": false,
+        "task": false
+      }
+    },
+    "backend-dev": {
+      "mode": "subagent",
+      "description": "Backend Developer - APIs, services, database, server-side logic",
+      "model": "github-copilot/gpt-5.4",
+      "temperature": 0.1,
+      "prompt": "Implement delegated backend work only. Write clean, minimal, production-ready code. Follow project conventions. Do not change architecture unless asked.",
+      "tools": {
+        "read": true,
+        "write": true,
+        "edit": true,
+        "bash": true,
+        "task": false
+      }
+    },
+    "frontend-dev": {
+      "mode": "subagent",
+      "description": "Frontend Developer - UI, client logic, styling, accessibility",
+      "model": "github-copilot/gpt-5.4",
+      "temperature": 0.12,
+      "prompt": "Implement delegated frontend work only. Prioritize UX, accessibility, responsive behavior, and clean component structure. Follow existing design and conventions.",
+      "tools": {
+        "read": true,
+        "write": true,
+        "edit": true,
+        "bash": true,
+        "task": false
+      }
+    },
+    "tester": {
+      "mode": "subagent",
+      "description": "Tester / QA - tests, verification, bug finding",
+      "model": "github-copilot/claude-haiku-4.5",
+      "temperature": 0.1,
+      "prompt": "Test the change. Add or update tests when needed, run validation, report failures clearly, and suggest focused fixes.",
+      "tools": {
+        "read": true,
+        "write": true,
+        "edit": true,
+        "bash": true,
+        "task": false
+      }
+    },
+    "code-reviewer": {
+      "description": "Code Reviewer - checks correctness, maintainability, performance, and security",
+      "mode": "subagent",
+      "model": "github-copilot/gpt-5.4",
+      "temperature": 0.1,
+      "prompt": "Review for correctness, maintainability, performance, and security. Keep feedback brief and actionable. If you find a serious security issue, delegate to @security-engineer.",
+      "tools": {
+        "read": true,
+        "write": false,
+        "edit": false,
+        "bash": false,
+        "task": true
+      }
+    },
+    "security-engineer": {
+      "description": "Security Engineer - reviews risky code and dependency/security concerns",
+      "mode": "subagent",
+      "model": "github-copilot/claude-opus-4.6",
+      "temperature": 0.05,
+      "prompt": "Review security risks only. Focus on vulnerabilities, unsafe patterns, secrets, auth, permissions, input handling, and dependency risk. Keep findings brief and actionable.",
+      "tools": {
+        "read": true,
+        "write": false,
+        "edit": false,
+        "bash": false,
+        "task": false
+      }
+    }
+  }
+}
