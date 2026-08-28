@@ -26,8 +26,22 @@ plugins=(git docker colored-man-pages zsh-autosuggestions zsh-syntax-highlightin
 source "$ZSH/oh-my-zsh.sh"
 
 alias ff="fzf --preview 'bat --style=numbers --color=always {}'"
+
+old() {
+  if (( $# == 0 )); then
+    print -u2 "usage: old <command> [args...]"
+    return 2
+  fi
+
+  command "$@"
+}
+
 if command -v eza >/dev/null 2>&1; then
   alias ls="eza"
+fi
+
+if command -v fd >/dev/null 2>&1; then
+  alias find="fd"
 fi
 
 if command -v zoxide >/dev/null 2>&1; then
