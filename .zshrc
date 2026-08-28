@@ -25,11 +25,14 @@ plugins=(git docker colored-man-pages zsh-autosuggestions zsh-syntax-highlightin
 
 source "$ZSH/oh-my-zsh.sh"
 
-alias h='eval "$(fc -l -r -n 1 | fzf)"'
 alias ff="fzf --preview 'bat --style=numbers --color=always {}'"
+if command -v eza >/dev/null 2>&1; then
+  alias ls="eza"
+fi
 
 if command -v zoxide >/dev/null 2>&1; then
   eval "$(zoxide init zsh)"
+  alias cd="z"
 fi
 
 if command -v atuin >/dev/null 2>&1; then
