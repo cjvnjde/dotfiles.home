@@ -50,7 +50,14 @@ if command -v zoxide >/dev/null 2>&1; then
 fi
 
 if command -v atuin >/dev/null 2>&1; then
-  eval "$(atuin init zsh)"
+  expected_atuin_key_hash="6c9af3da1bf495b8c7fdeb0e7734b3c53c55c0249c843988f5f0d8bb7fadfaa3"
+  actual_atuin_key_hash="$(atuin key | sha256sum | awk '{print $1}')"
+
+  if [[ "$actual_atuin_key_hash" == "$expected_atuin_key_hash" ]]; then
+    eval "$(atuin init zsh)"
+  else
+    print -u2 "Atuin key mismatch — Atuin disabled"
+  fi
 fi
 
 if [[ -f "$HOME/.zshrc_local" ]]; then
