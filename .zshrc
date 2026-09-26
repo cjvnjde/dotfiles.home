@@ -63,3 +63,7 @@ fi
 if [[ -f "$HOME/.zshrc_local" ]]; then
   source "$HOME/.zshrc_local"
 fi
+
+mkcd() {
+  mkdir -p -- "$1" && cd -- "$1"
+}
