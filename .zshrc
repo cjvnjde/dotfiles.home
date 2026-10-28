@@ -1,5 +1,7 @@
-export XDG_CONFIG_HOME="$HOME/.config"
-export ZSH="$HOME/.oh-my-zsh"
+# Machine-specific paths and tool setup must be available to shared integrations.
+if [[ -f "$HOME/.zshrc_local" ]]; then
+  source "$HOME/.zshrc_local"
+fi
 
 export BAT_THEME="Catppuccin Mocha"
 
@@ -12,18 +14,13 @@ export FZF_DEFAULT_OPTS='
 --pointer=">"
 '
 
-typeset -U path PATH
-path+=(
-  "$HOME/.local/scripts"
-  "$HOME/.local/bin"
-  "$HOME/.cargo/bin"
-)
-
 ZSH_THEME="bira"
 
 plugins=(git docker colored-man-pages zsh-autosuggestions zsh-syntax-highlighting)
 
-source "$ZSH/oh-my-zsh.sh"
+if [[ -n "${ZSH:-}" && -f "$ZSH/oh-my-zsh.sh" ]]; then
+  source "$ZSH/oh-my-zsh.sh"
+fi
 
 alias ff="fzf --preview 'bat --style=numbers --color=always {}'"
 
@@ -49,21 +46,11 @@ if command -v zoxide >/dev/null 2>&1; then
   alias cd="z"
 fi
 
-if command -v atuin >/dev/null 2>&1; then
-  expected_atuin_key_hash="6c9af3da1bf495b8c7fdeb0e7734b3c53c55c0249c843988f5f0d8bb7fadfaa3"
-  actual_atuin_key_hash="$(atuin key | sha256sum | awk '{print $1}')"
-
-  if [[ "$actual_atuin_key_hash" == "$expected_atuin_key_hash" ]]; then
-    eval "$(atuin init zsh)"
-  else
-    print -u2 "Atuin key mismatch — Atuin disabled"
-  fi
-fi
-
-if [[ -f "$HOME/.zshrc_local" ]]; then
-  source "$HOME/.zshrc_local"
-fi
-
 mkcd() {
   mkdir -p -- "$1" && cd -- "$1"
 }
+
+# Let local integrations and overrides run after shared plugins and aliases.
+if (( $+functions[zshrc_local_after_init] )); then
+  zshrc_local_after_init
+fi
