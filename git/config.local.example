@@ -1,0 +1,7 @@
+# Copy to config.local. Any Git section can be overridden here.
+# This file stays private to this checkout and is included last.
+# [user]
+#   email = work@example.com
+#   signingKey = YOUR_KEY
+# [core]
+#   sshCommand = ssh -i ~/.ssh/work

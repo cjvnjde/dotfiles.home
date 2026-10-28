@@ -21,17 +21,21 @@ resolve_script_path() {
 SCRIPT_PATH="$(resolve_script_path "${BASH_SOURCE[0]}")"
 SCRIPT_DIR="$(cd "$(dirname "$SCRIPT_PATH")" && pwd -P)"
 ROOT_DIR="$(cd "$SCRIPT_DIR/../.." && pwd -P)"
-SOURCE="$ROOT_DIR/home/.gitconfig"
-DEST="$HOME/.gitconfig"
+SOURCE="$ROOT_DIR/home/git"
+DEST="$HOME/.config/git"
+LEGACY_SOURCE="$ROOT_DIR/home/.gitconfig"
 
 source "$ROOT_DIR/setup/lib.sh"
 
 case "${1:-}" in
   enable)
+    # Only remove a legacy link managed by this repository.
+    unlink_path "$LEGACY_SOURCE" "$HOME/.gitconfig"
     link_path "$SOURCE" "$DEST"
     ;;
   disable)
     unlink_path "$SOURCE" "$DEST"
+    unlink_path "$LEGACY_SOURCE" "$HOME/.gitconfig"
     ;;
   *)
     error "Usage: bash $ROOT_DIR/home/setup/git.sh <enable|disable>"

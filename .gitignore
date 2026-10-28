@@ -1,2 +1,4 @@
 .gitconfig_*
 .zshrc_local
+/.zshrc.local
+/git/config.local

@@ -1,5 +1,11 @@
-# Machine-specific paths and tool setup must be available to shared integrations.
-if [[ -f "$HOME/.zshrc_local" ]]; then
+# Resolve the symlink before loading companion and machine-specific files.
+typeset -g _dotfiles_shell_dir="${${(%):-%x}:A:h}"
+
+# Local paths and tool setup must be available to shared integrations.
+if [[ -f "$_dotfiles_shell_dir/.zshrc.local" ]]; then
+  source "$_dotfiles_shell_dir/.zshrc.local"
+elif [[ -f "$HOME/.zshrc_local" ]]; then
+  # Compatibility with machines that have not migrated their local file yet.
   source "$HOME/.zshrc_local"
 fi
 
@@ -14,8 +20,6 @@ export FZF_DEFAULT_OPTS='
 --pointer=">"
 '
 
-# Resolve the symlink so companion files stay inside this repository.
-typeset -g _dotfiles_shell_dir="${${(%):-%x}:A:h}"
 source "$_dotfiles_shell_dir/zsh/interactive.zsh"
 source "$_dotfiles_shell_dir/zsh/aliases.zsh"
 

@@ -69,9 +69,6 @@
 [push]
 	recurseSubmodules = on-demand
 
-[include]
-    path = ~/dotfiles/home/.gitconfig_local
-
 [url "git@github.com:"]
       insteadOf = https://github.com/
 [filter "lfs"]
@@ -79,3 +76,7 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+
+# Optional machine configuration, resolved beside this config.
+[include]
+    path = config.local

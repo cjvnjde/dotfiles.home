@@ -1,0 +1,11 @@
+# Copy to .zshrc.local. This file stays private to this checkout.
+# Top-level code runs before shared initialization. The optional hook runs after.
+# export STARSHIP_CONFIG="$HOME/.config/starship.toml"
+# typeset -U path PATH
+# path=("$HOME/.local/bin" "$HOME/.local/scripts" $path)
+# command -v mise >/dev/null && eval "$(mise activate zsh)"
+#
+# zshrc_local_after_init() {
+#   alias work='cd ~/Projects/work'
+#   command -v atuin >/dev/null && eval "$(atuin init zsh --disable-up-arrow)"
+# }

@@ -55,7 +55,7 @@ bindkey ' ' magic-space
 _dotfiles_load_plugin() {
   local plugin="$1" root
   local -a roots
-  # Override the search roots in .zshrc_local for other installation layouts.
+  # Override the search roots in .zshrc.local for other installation layouts.
   roots=("${ZSH_PLUGIN_DIRS[@]}" "${XDG_DATA_HOME:-$HOME/.local/share}/zsh/plugins")
   (( $+commands[brew] )) && roots+=("${commands[brew]:h:h}/share")
   roots+=(/usr/share /usr/share/zsh/plugins /usr/local/share)
