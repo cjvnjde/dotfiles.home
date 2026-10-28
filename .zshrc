@@ -14,13 +14,10 @@ export FZF_DEFAULT_OPTS='
 --pointer=">"
 '
 
-ZSH_THEME="bira"
-
-plugins=(git docker colored-man-pages zsh-autosuggestions zsh-syntax-highlighting)
-
-if [[ -n "${ZSH:-}" && -f "$ZSH/oh-my-zsh.sh" ]]; then
-  source "$ZSH/oh-my-zsh.sh"
-fi
+# Resolve the symlink so companion files stay inside this repository.
+typeset -g _dotfiles_shell_dir="${${(%):-%x}:A:h}"
+source "$_dotfiles_shell_dir/zsh/interactive.zsh"
+source "$_dotfiles_shell_dir/zsh/aliases.zsh"
 
 alias ff="fzf --preview 'bat --style=numbers --color=always {}'"
 
@@ -50,7 +47,21 @@ mkcd() {
   mkdir -p -- "$1" && cd -- "$1"
 }
 
-# Let local integrations and overrides run after shared plugins and aliases.
+if command -v starship >/dev/null 2>&1; then
+  export STARSHIP_CONFIG="${STARSHIP_CONFIG:-$_dotfiles_shell_dir/starship.toml}"
+  eval "$(starship init zsh)"
+else
+  PROMPT=$'╭─%B%F{green}%n@%m %F{blue}%~%f%b\n╰─%B%(!.#.$)%b '
+fi
+
+# Load suggestions before local widgets (Atuin), and highlighting last.
+_dotfiles_load_plugin zsh-autosuggestions
+
+# Let local integrations and overrides run after shared aliases and prompt setup.
 if (( $+functions[zshrc_local_after_init] )); then
   zshrc_local_after_init
 fi
+
+_dotfiles_load_plugin zsh-syntax-highlighting
+unfunction _dotfiles_load_plugin
+unset _dotfiles_shell_dir

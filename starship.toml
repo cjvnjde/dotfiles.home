@@ -1,0 +1,55 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# Bira's two-line layout, with only the modules we actually display.
+add_newline = false
+format = '╭─$username$hostname$directory$git_branch$git_status$python$line_break╰─$character'
+right_format = '$status'
+
+[username]
+show_always = true
+style_user = 'bold green'
+style_root = 'bold red'
+format = '[$user]($style)'
+
+[hostname]
+ssh_only = false
+style = 'bold green'
+format = '[@$hostname]($style) '
+
+[directory]
+style = 'bold blue'
+truncation_length = 0
+truncate_to_repo = false
+format = '[$path]($style)[$read_only]($read_only_style) '
+
+[git_branch]
+style = 'bold yellow'
+format = '[‹$branch]($style)'
+
+[git_status]
+style = 'bold yellow'
+format = '([$all_status$ahead_behind]($style))[›](bold yellow) '
+conflicted = '[●](bold red)'
+ahead = ''
+behind = ''
+diverged = ''
+untracked = '[●](bold red)'
+stashed = ''
+modified = '[●](bold red)'
+staged = '[●](bold red)'
+renamed = '[●](bold red)'
+deleted = '[●](bold red)'
+
+[python]
+format = '[(‹$virtualenv› )](bold green)'
+detect_extensions = []
+detect_files = []
+detect_folders = []
+
+[character]
+success_symbol = '[\$](bold)'
+error_symbol = '[\$](bold)'
+
+[status]
+disabled = false
+format = '[$status ↵](bold red)'
