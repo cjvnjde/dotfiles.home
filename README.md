@@ -31,7 +31,7 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ~/.local/share/zsh/pl
 git clone https://github.com/zsh-users/zsh-syntax-highlighting ~/.local/share/zsh/plugins/zsh-syntax-highlighting
 ```
 
-Enable the existing `zshrc` module with `bash home/setup/zshrc.sh enable`. Its symlink also makes the companion `zsh/` files and `starship.toml` available; no separate prompt installation or config symlink is necessary.
+Enable the existing `zshrc` module in `.modules` and run `bash setup.sh`. Its symlink also makes the companion `zsh/` files and `starship.toml` available; no separate prompt installation or config symlink is necessary.
 
 ### Shared settings
 
@@ -46,7 +46,7 @@ Typing plugins are loaded directly from Homebrew, standard Linux package locatio
 
 `home/.zshrc.local` lives beside the shared `.zshrc` in this submodule and is gitignored. Copy `.zshrc.local.example` to `.zshrc.local`; it must not be committed. The symlinked shared file resolves its repository path before loading it. Existing `~/.zshrc_local` files remain a fallback until the new local file exists. Put machine-specific PATH entries, SDK paths, package-manager/runtime activation (Homebrew, mise), private environment variables, and account-specific checks here. The old `export ZSH=...` setting can be removed; it is unused.
 
-The shared file loads `.zshrc.local` first, so its paths and environment are available before completion and shared integrations initialize. It calls an optional `zshrc_local_after_init` function after prompt setup and autosuggestions. Define that function for local alias overrides or integrations such as Atuin. Syntax highlighting loads after the hook.
+The shared file loads `.zshrc.local` first, so its paths and environment are available before completion and shared integrations initialize. It calls an optional `zshrc_local_after_init` function after prompt setup and autosuggestions. Define that function for local alias overrides or integrations such as Atuin. When `.zshrc.local` is absent, the legacy `~/.zshrc_local` loads after shared initialization to preserve its alias and keybinding overrides. Syntax highlighting loads last.
 
 Do not add machine-specific absolute installation paths or pinned mise version directories to the shared `.zshrc`.
 
@@ -72,12 +72,16 @@ Apply shell changes by opening a new terminal or running `exec zsh -l`. Existing
 
 ## Git configuration
 
-The `git` module links `home/git/` to `~/.config/git/`. Shared settings live in
+The `git` module links `home/git/` to `$XDG_CONFIG_HOME/git/`, defaulting to
+`~/.config/git/` when the variable is unset or empty. Shared settings live in
 `git/config`, which includes `git/config.local` last. Copy
 `git/config.local.example` to `git/config.local` for machine-specific identity,
 signing, SSH, pager, and other settings. The local file is gitignored.
 
-The old `home/.gitconfig_local` filename is replaced by `home/git/config.local`.
+For a separate work identity, add an `includeIf` section to `git/config.local`
+pointing to `work.local` beside it. Files matching `git/*.local` are gitignored.
+Enable `git` in `.modules` and run the global `bash setup.sh`; no separate Git
+setup command is needed. Setup does not migrate private configuration files.
 Setup removes only a `~/.gitconfig` symlink managed by this checkout. An unrelated
 `~/.gitconfig` file is preserved; Git reads it after the XDG configuration, so it
 can override your new settings.

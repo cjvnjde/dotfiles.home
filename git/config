@@ -77,6 +77,6 @@
 	process = git-lfs filter-process
 	required = true
 
-# Optional machine configuration, resolved beside this config.
+# Optional machine configuration, resolved beside this config and applied last.
 [include]
     path = config.local

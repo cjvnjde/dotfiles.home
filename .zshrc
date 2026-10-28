@@ -4,9 +4,6 @@ typeset -g _dotfiles_shell_dir="${${(%):-%x}:A:h}"
 # Local paths and tool setup must be available to shared integrations.
 if [[ -f "$_dotfiles_shell_dir/.zshrc.local" ]]; then
   source "$_dotfiles_shell_dir/.zshrc.local"
-elif [[ -f "$HOME/.zshrc_local" ]]; then
-  # Compatibility with machines that have not migrated their local file yet.
-  source "$HOME/.zshrc_local"
 fi
 
 export BAT_THEME="Catppuccin Mocha"
@@ -60,6 +57,11 @@ fi
 
 # Load suggestions before local widgets (Atuin), and highlighting last.
 _dotfiles_load_plugin zsh-autosuggestions
+
+# Preserve late overrides on machines still using the legacy local file.
+if [[ ! -f "$_dotfiles_shell_dir/.zshrc.local" && -f "$HOME/.zshrc_local" ]]; then
+  source "$HOME/.zshrc_local"
+fi
 
 # Let local integrations and overrides run after shared aliases and prompt setup.
 if (( $+functions[zshrc_local_after_init] )); then

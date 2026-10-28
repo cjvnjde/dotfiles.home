@@ -22,7 +22,7 @@ SCRIPT_PATH="$(resolve_script_path "${BASH_SOURCE[0]}")"
 SCRIPT_DIR="$(cd "$(dirname "$SCRIPT_PATH")" && pwd -P)"
 ROOT_DIR="$(cd "$SCRIPT_DIR/../.." && pwd -P)"
 SOURCE="$ROOT_DIR/home/git"
-DEST="$HOME/.config/git"
+DEST="${XDG_CONFIG_HOME:-$HOME/.config}/git"
 LEGACY_SOURCE="$ROOT_DIR/home/.gitconfig"
 
 source "$ROOT_DIR/setup/lib.sh"

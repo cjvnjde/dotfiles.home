@@ -5,3 +5,7 @@
 #   signingKey = YOUR_KEY
 # [core]
 #   sshCommand = ssh -i ~/.ssh/work
+#
+# Use a separate private profile for repositories under a work directory.
+# [includeIf "gitdir:~/work/"]
+#   path = work.local
