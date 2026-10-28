@@ -7,5 +7,5 @@
 #
 # zshrc_local_after_init() {
 #   alias work='cd ~/Projects/work'
-#   command -v atuin >/dev/null && eval "$(atuin init zsh --disable-up-arrow)"
+#   command -v atuin >/dev/null && eval "$(atuin init zsh)"
 # }
