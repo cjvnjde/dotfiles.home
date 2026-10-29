@@ -1,11 +1,16 @@
 # Copy to .zshrc.local. This file stays private to this checkout.
-# Top-level code runs before shared initialization. The optional hook runs after.
+# Top-level code runs before shared initialization. Keep PATH setup here.
 # export STARSHIP_CONFIG="$HOME/.config/starship.toml"
 # typeset -U path PATH
 # path=("$HOME/.local/bin" "$HOME/.local/scripts" $path)
-# command -v mise >/dev/null && eval "$(mise activate zsh)"
+# DOTFILES_FAST_PROMPT=1 # Show a built-in prompt before loading integrations.
 #
 # zshrc_local_after_init() {
 #   alias work='cd ~/Projects/work'
+# }
+#
+# zshrc_local_deferred_init() {
+#   command -v mise >/dev/null && eval "$(mise activate zsh)"
 #   command -v atuin >/dev/null && eval "$(atuin init zsh)"
 # }
+# Set DOTFILES_DEFER_INIT=0 to run this hook during startup instead.

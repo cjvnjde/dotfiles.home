@@ -4,11 +4,6 @@ colors
 zmodload zsh/complist
 zmodload zsh/terminfo
 
-HISTFILE="${HISTFILE:-$HOME/.zsh_history}"
-HISTSIZE=50000
-SAVEHIST=10000
-setopt extended_history hist_expire_dups_first hist_ignore_dups
-setopt hist_ignore_space hist_verify share_history
 setopt auto_cd auto_pushd pushd_ignore_dups pushd_minus
 setopt auto_menu complete_in_word always_to_end interactive_comments
 unsetopt menu_complete flowcontrol
@@ -19,12 +14,17 @@ fpath=("${XDG_DATA_HOME:-$HOME/.local/share}/zsh/completions" $fpath)
 if (( $+commands[brew] )); then
   fpath=("${commands[brew]:h:h}/share/zsh/site-functions" $fpath)
 fi
-typeset -U fpath
+typeset -gU fpath
 () {
   local cache_dir="${XDG_CACHE_HOME:-$HOME/.cache}/zsh"
   mkdir -p "$cache_dir"
-  # Keep compinit's security checks and automatic completion invalidation.
-  compinit -d "$cache_dir/zcompdump-$ZSH_VERSION"
+  # Keep security checks and automatic completion invalidation. Deferred setup
+  # cannot prompt for input, so ignore insecure paths in that mode.
+  if (( ${_dotfiles_fast_start:-0} )); then
+    compinit -i -d "$cache_dir/zcompdump-$ZSH_VERSION"
+  else
+    compinit -d "$cache_dir/zcompdump-$ZSH_VERSION"
+  fi
   zstyle ':completion:*' use-cache yes
   zstyle ':completion:*' cache-path "$cache_dir"
 }

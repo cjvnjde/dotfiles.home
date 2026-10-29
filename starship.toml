@@ -33,8 +33,10 @@ shell = ['sh']
 format = '$output '
 # The command emits only fixed ANSI colors and symbols, never filenames.
 unsafe_no_escape = true
+# Skip submodule worktree scans on every prompt; changed commits still show.
+# Enter a submodule to see its own modified and untracked files.
 command = '''
-git status --porcelain=v1 --untracked-files=normal 2>/dev/null | awk '
+git status --porcelain=v1 --untracked-files=normal --ignore-submodules=dirty 2>/dev/null | awk '
 {
   status = substr($0, 1, 2)
   if (status ~ /^(DD|AU|UD|UA|DU|AA|UU)$/) conflict = 1
