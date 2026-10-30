@@ -44,6 +44,7 @@ mkcd() {
 if command -v starship >/dev/null 2>&1; then
   export STARSHIP_CONFIG="${STARSHIP_CONFIG:-$_dotfiles_shell_dir/starship.toml}"
   eval "$(starship init zsh)"
+  source "$_dotfiles_shell_dir/zsh/git-status.zsh"
 else
   PROMPT=$'╭─%B%F{green}%n@%m %F{blue}%~%f%b\n╰─%B%(!.#.$)%b '
 fi
