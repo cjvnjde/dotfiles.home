@@ -2,7 +2,7 @@
 
 # Bira's two-line layout, with only the modules we actually display.
 add_newline = false
-format = '╭─$username$hostname$directory$git_branch${env_var.DOTFILES_GIT_STATUS}$python$line_break╰─$character'
+format = '╭─$username$hostname$directory$git_branch${env_var.DOTFILES_GIT_STATUS}$python${env_var.DOTFILES_TERMINAL_APP}$line_break╰─$character'
 right_format = '$status'
 
 [username]
@@ -30,6 +30,11 @@ format = '[‹$branch›]($style) '
 description = 'One Git status dot, colored by the highest-priority change'
 # Zsh refreshes this fixed ANSI dot asynchronously. No command runs in Starship.
 format = '$env_value'
+
+[env_var.DOTFILES_TERMINAL_APP]
+description = 'App hosting this shell, hidden for plain terminals'
+format = '[(◇$env_value)]($style)'
+style = 'dimmed'
 
 [python]
 format = '[(‹$virtualenv› )](bold green)'

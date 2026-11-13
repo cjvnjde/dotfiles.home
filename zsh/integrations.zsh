@@ -12,6 +12,7 @@ export FZF_DEFAULT_OPTS='
 
 source "$_dotfiles_shell_dir/zsh/interactive.zsh"
 source "$_dotfiles_shell_dir/zsh/aliases.zsh"
+source "$_dotfiles_shell_dir/zsh/terminal-app.zsh"
 
 alias ff="fzf --preview 'bat --style=numbers --color=always {}'"
 
